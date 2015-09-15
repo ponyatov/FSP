@@ -10,7 +10,7 @@ FreeSyntax.pdf: FreeSyntax.tex
 	mkdir -p tmp
 	pdflatex -output-directory tmp $<
 	pdflatex -output-directory tmp $<
-	mv tmp/$@ $@
+	cp tmp/$@ $@
 
 FreeSyntax.tex: ./FSP$(EXE) FreeSyntax.fsp
 	./FSP$(EXE) < FreeSyntax.fsp > $@

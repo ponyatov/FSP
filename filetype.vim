@@ -1,6 +1,6 @@
 au BufNewFile,BufRead *.fsp set filetype=fsp
 
-au BufNewFile,BufRead *.fsp tabf fsp.log|set filetype=fsp|set autoread
+au BufNewFile,BufRead *.fsp tabf FreeSyntax.tex|set filetype=tex|set autoread
 au BufNewFile,BufRead *.fsp tabf syntax.vim|set filetype=vim
 au BufNewFile,BufRead *.fsp tabf parser.ypp|set filetype=yacc
 au BufNewFile,BufRead *.fsp tabf lexer.lpp|set filetype=lex

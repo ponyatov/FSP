@@ -11,16 +11,24 @@ using namespace std;
 
 void W(char c);
 void W(const char *c);
+void W(string *s);
 
 // TEX markup
 
 const char TEXHEADER[]=\
-	"\\documentclass{book}\n"
-	"\\begin{document}\n"
-	"\\begin{verbatim}\n";
+	"\\documentclass[12pt]{article}\n"
+	"\\usepackage[utf8]{inputenc}\n"
+	"\\usepackage[a4paper,margin=10mm]{geometry}\n";
 const char TEXFOOTER[]=\
-	"\\end{verbatim}\n"
-	"\\end{document}\n";
+	"\\end{document}\n\n";
+
+struct biTEX {
+	biTEX();
+	void W(char);
+	void W(const char*);
+	void W(string *s);
+};
+extern biTEX *bi_tex;
 
 // parser
 

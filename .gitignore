@@ -3,4 +3,7 @@
 *.exe
 *.o
 *.tex
+lex.yy.c
+parser.tab.?pp
+/tmp/
 

@@ -1,7 +1,6 @@
 %{
 #include "FSP.hpp"
 int main() { 
-	W(TEXHEADER);
 	yyparse();
 	W(TEXFOOTER);
 	return 0;
@@ -17,8 +16,11 @@ int main() {
 
 %token <c> C
 
+%token <s> TEX
+
 %%
 F :
+  	| F TEX		{ bi_tex=new biTEX(); }
 	| F C		{ W($2); }
 ;
 %%

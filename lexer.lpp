@@ -1,12 +1,52 @@
 %{
 #include "FSP.hpp"
 #define TC(X)	{ yylval.c=yytext[0]; return X; }
+#define T1(X)	{ yylval.c=yytext[1]; return X; }
 #define TS(X)	{ yylval.s=new string(yytext); return X; }
+
+int SEC=0;
 %}
 
 %option noyywrap
 
+%s dotline
+%s abstract
+%s table
+
+S	[ \t\r\n]
+
 %%
+\.tex\n+	TS(TEX)
+
+\.sec\+		{SEC++;}
+\.sec\-		{SEC--;}
+\.sec{S}+	{ BEGIN(dotline); 
+			switch (SEC) {
+			case 0: W("\\section{"); break;
+			case -1: W("\\subsection{"); break;
+			case -2: W("\\subsubsection{"); break;
+			default: W("\\section{"); break;
+			}}
+
+\.table[^\n]*\n	{BEGIN(table); W(yytext); W("\n\\begin{tabular}{l l l}\n"); }
+<table>\.end	{BEGIN(INITIAL); W("\\end{tabular}\n"); }
+
+\.title{S}+	{BEGIN(dotline); W("\\title{"); }
+\.author{S}+	{BEGIN(dotline); W("\\author{"); }
+\.github[^\n]*\n+	{}
+<dotline>\n		{BEGIN(INITIAL); W("}\n"); }
+<dotline>.		{W(yytext[0]);}
+
+\.file			{W("\\begin{verbatim}\n.file"); }
+\.eof			{W(".eof\n\\end{verbatim}\n");}
+
+\.titlepage		{W("\\begin{document}\n\\maketitle\n");}
+\.contents		{W("\\tableofcontents\n");}
+
+\.about\{		{BEGIN(abstract); W("\\begin{abstract}"); }
+<abstract>\}	{BEGIN(INITIAL); W("\\end{abstract}"); }
+
+\\\.		T1(C)
 \n			TC(C)
 .			TC(C)
 %%

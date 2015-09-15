@@ -1,8 +1,10 @@
+.tex
 
-.title		Free Syntax Programming
-.subtitle	Using DSL for computer systems development
+.title		Free Syntax Programming\\using DSL for computer systems development
 .author		Dmitry Ponyatov <dponyatov@gmail.com>
 .github		https://github.com/ponyatov/FSP
+
+.titlepage
 
 .about{
 
@@ -10,6 +12,8 @@ Free Syntax Programming (FSP) is software development technique enlarges your
 coding skills efficency. This article describes
 
 }
+
+.contents
 
 .sec FSP Project structure
 
@@ -25,11 +29,14 @@ core.cpp & FSP dynamic language runtime \\
 FSP.hpp & \.h-file definitions \\
 .end
 
+.sec-
+
 .sec Configuring (g)Vim for FSP programming
+.sec-
 
 .sec Define *.fsp filetype
 
-.file $(VIMFILES)/ftdetect/fsp.vim
+.file $VIMFILES/ftdetect/fsp.vim
 source D:\w\FSP\filetype.vim
 .eof
 
@@ -37,18 +44,33 @@ source D:\w\FSP\filetype.vim
 source D:\w\FSP\filetype.vim
 .eof
 
+.sec+
+
+.sec Makefile
+.sec Lexer
+.sec Parser
+.sec Dynamic runtime
+
+.sec+
+
 .sec Typical syntax elements (you can change it as you like)
+
+.sec-
 
 .sec Comments
 
+.file
 # line comment
 
 #| block
 	comment |#
+.eof
 
 .sec Variables
 
 Symbolic vars widely used in FSP, some of them defined low-level in core.cpp and
 used via it's substitution as multi-platform compatibility tip. As example you
-can review .ref{vimfiles} \$VIMFILES variable use.
+can review .ref{vimfiles} $VIMFILES variable use.
+
+.sec+
 
