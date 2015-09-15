@@ -7,7 +7,7 @@ biTEX::biTEX() { cout<<TEXHEADER; }
 void biTEX::W(char c) {
 	switch (c) {
 		case '$': cout<<"\\$"; break;
-		case '#': cout<<"\\#"; break;
+//		case '#': cout<<"\\#"; break;
 		case '<': cout<<"\\textless "; break;
 		case '>': cout<<"\\textgreater "; break;
 		default: cout<<c; break;
