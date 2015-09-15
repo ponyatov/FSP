@@ -1,0 +1,7 @@
+*~
+*.swp
+*.exe
+lex.yy.c
+*.tab.?pp
+*.fslog
+

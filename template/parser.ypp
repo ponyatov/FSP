@@ -1,0 +1,20 @@
+%{
+#include "FSP.hpp"
+int main() { return yyparse(); }
+%}
+
+%defines
+
+%union {
+	char c;
+	string *s;
+}
+
+%token <c> C
+
+%%
+F :
+	| F C		{ W($2); }
+;
+%%
+
