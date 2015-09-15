@@ -1,0 +1,13 @@
+%{
+#include "FSP.hpp"
+#define TC(X)	{ yylval.c=yytext[0]; return X; }
+#define TS(X)	{ yylval.s=new string(yytext); return X; }
+%}
+
+%option noyywrap
+
+%%
+\n			TC(C)
+.			TC(C)
+%%
+

@@ -1,0 +1,25 @@
+%{
+#include "FSP.hpp"
+int main() { 
+	W(TEXHEADER);
+	yyparse();
+	W(TEXFOOTER);
+	return 0;
+}
+%}
+
+%defines
+
+%union {
+	char c;
+	string *s;
+}
+
+%token <c> C
+
+%%
+F :
+	| F C		{ W($2); }
+;
+%%
+
